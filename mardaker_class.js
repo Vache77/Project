@@ -1,4 +1,5 @@
-class Mardaker extends LivingCreature {
+var LivingCreature = require("./class.js")
+module.exports=class Mardaker extends LivingCreature {
     constructor(x, y, index) {
         super(x,y,index);
         this.energy = 15;
