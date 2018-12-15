@@ -21,7 +21,8 @@ module.exports=class Mard extends LivingCreature {
         return super.chooseCell(character)
     }
     mult() {
-        var empty = random(this.chooseCell(0))
+        var arr =this.chooseCell(0)
+        var empty = arr[Math.floor(Math.random() * arr.length)]
         this.energy--
         if (empty && this.energy > 30) {
             var newX = empty[0]
@@ -32,7 +33,8 @@ module.exports=class Mard extends LivingCreature {
         }
     }
     move() {
-        var empty = random(this.chooseCell(0));
+        var arr =this.chooseCell(0)
+        var empty = arr[Math.floor(Math.random() * arr.length)]
         this.energy -= 2
         if (empty) {
             var newX = empty[0]
@@ -45,7 +47,8 @@ module.exports=class Mard extends LivingCreature {
     }
     move1() {
 
-        var empty1 = random(this.chooseCell(1));
+        var arr =this.chooseCell(1)
+        var empty1= arr[Math.floor(Math.random() * arr.length)]
         this.energy -= 2
 
         if (empty1) {
@@ -65,7 +68,8 @@ module.exports=class Mard extends LivingCreature {
 
     }
     eat() {
-        var food = random(this.chooseCell(3))
+        var arr =this.chooseCell(3)
+        var food = arr[Math.floor(Math.random() * arr.length)]
 
         if (food) {
             var newX = food[0]
@@ -84,7 +88,8 @@ module.exports=class Mard extends LivingCreature {
         }
     }
     eat1() {
-        var food1 = random(this.chooseCell(2))
+        var arr =this.chooseCell(2)
+        var food1 = arr[Math.floor(Math.random() * arr.length)]
         if (food1) {
             var newX = food1[0]
             var newY = food1[1]

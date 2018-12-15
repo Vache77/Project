@@ -21,7 +21,8 @@ module.exports=class Gishatich extends LivingCreature {
         return super.chooseCell(character)
     }
     mult() {
-        var empty = random(this.chooseCell(0))
+        var arr =this.chooseCell(0)
+        var empty = arr[Math.floor(Math.random() * arr.length)]
         this.energy--
         if (empty && this.energy > 20) {
             var newX = empty[0]
@@ -32,8 +33,8 @@ module.exports=class Gishatich extends LivingCreature {
         }
     }
     move() {
-        var empty = random(this.chooseCell(0));
-        (empty)
+        var arr =this.chooseCell(0)
+        var empty = arr[Math.floor(Math.random() * arr.length)]
         this.energy -= 2
         if (empty) {
 
@@ -46,7 +47,8 @@ module.exports=class Gishatich extends LivingCreature {
         }
     }
     eat() {
-        var food = random(this.chooseCell(2))
+        var arr =this.chooseCell(2)
+        var food = arr[Math.floor(Math.random() * arr.length)]
         if (food) {
             var newX = food[0]
             var newY = food[1]

@@ -2,35 +2,11 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-var messages = [];
-
 app.use(express.static("."));
 app.get('/', function (req, res) {
    res.redirect('index.html');
 });
 server.listen(3000);
-// var matrix = [
-//      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-//      [0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-//      [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
-//      [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-//      [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
-//      [0,0,4,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
-//      [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
-//      [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,4,0,0],
-//      [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
-//      [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
-//      [0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0],
-//      [0,0,0,5,0,0,0,0,0,2,2,2,2,2,2,0,0,0,0,0],
-//      [0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,0,0,0,0,0],
-//      [0,0,0,0,0,0,4,0,0,2,2,2,2,2,2,0,0,0,0,0],
-//      [0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,0,4,0,0,0],
-//      [0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,0,0,0,0],
-//      [0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0],
-//      [0,0,0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0],
-//      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-//      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-// ]
 var n = 20
 var m = 20
 function getRandomArbitrary(min, max) {
@@ -38,7 +14,7 @@ function getRandomArbitrary(min, max) {
 }
 
 function fillMatrix(n, m) {
-    var matrix = [];
+    matrix = [];
     for (var i = 0; i < n; i++) {
         matrix.push([]);
         for (var j = 0; j < m; j++) {
@@ -47,19 +23,19 @@ function fillMatrix(n, m) {
     }
     return matrix
 }
-var Grass = require("./Grass.js");
-var Xotaker = require("./xotaker-class.js");
-var Gishatich = require("./gishatich-class.js");
-var Mard = require("./mard-class.js");
-var Mardaker = require("./mardaker-class.js");
+Grass = require("./grass_class.js");
+Xotaker = require("./xotaker_class.js");
+Gishatich = require("./gishatich_class.js");
+Mard = require("./mard_class.js");
+Mardaker = require("./mardaker_class.js");
 
-var matrix = fillMatrix(n, m)
-var grassArr = [];
-var xotakerArr = [];
-var gishatichArr = [];
-var mardArr = [];
-var mardakerArr = []
-var side = 20;
+ matrix = fillMatrix(n, m)
+ grassArr = []; 
+ xotakerArr = [];
+ gishatichArr = [];
+ mardArr = [];
+ mardakerArr = []
+ side = 20;
 
 
 
@@ -100,7 +76,7 @@ for (var y = 0; y < matrix.length; y++) {
 }
 
 
-setInterval(draw, 1000)
+setInterval(draw, 200)
 function draw() {
     for (var i in grassArr) {
         grassArr[i].mult()
@@ -132,5 +108,7 @@ function draw() {
         mardakerArr[i].mult()
         mardakerArr[i].die()
     }
+    io.sockets.emit("matrix",matrix);
+    console.log(matrix)
 
 }

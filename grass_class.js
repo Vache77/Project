@@ -2,7 +2,8 @@ var LivingCreature = require("./class.js")
 module.exports=class Grass extends LivingCreature {
 
     mult() {
-        var empty = random(this.chooseCell(0))
+        var arr =this.chooseCell(0)
+        var empty = arr[Math.floor(Math.random() * arr.length)]
         this.multiply++
         if (empty && this.multiply < 4) {
             var newX = empty[0]

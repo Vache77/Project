@@ -21,7 +21,8 @@ module.exports=class Mardaker extends LivingCreature {
         return super.chooseCell(character);
     }
     mult() {
-        var empty = random(this.chooseCell(0))
+        var arr =this.chooseCell(0)
+        var empty = arr[Math.floor(Math.random() * arr.length)]
         if (empty && this.energy > 30) {
             var newX = empty[0]
             var newY = empty[1]
@@ -31,7 +32,8 @@ module.exports=class Mardaker extends LivingCreature {
         }
     }
     move() {
-        var empty = random(this.chooseCell(0));
+        var arr =this.chooseCell(0)
+        var empty = arr[Math.floor(Math.random() * arr.length)]
         this.energy -= 3
         if (empty) {
             var newX = empty[0]
@@ -44,7 +46,8 @@ module.exports=class Mardaker extends LivingCreature {
     }
     move1() {
 
-        var empty1 = random(this.chooseCell(1));
+        var arr =this.chooseCell(1)
+        var empty1 = arr[Math.floor(Math.random() * arr.length)]
         this.energy -= 3
 
         if (empty1) {
@@ -61,10 +64,10 @@ module.exports=class Mardaker extends LivingCreature {
                 }
             }
         }
-
     }
     eat() {
-        var food = random(this.chooseCell(4))
+        var arr =this.chooseCell(4)
+        var food = arr[Math.floor(Math.random() * arr.length)]
 
         if (food) {
             var newX = food[0]
