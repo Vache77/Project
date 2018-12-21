@@ -4,7 +4,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 app.use(express.static("."));
 app.get('/', function (req, res) {
-   res.redirect('index.html');
+    res.redirect('index.html');
 });
 server.listen(3000);
 var n = 20
@@ -29,14 +29,14 @@ Gishatich = require("./gishatich_class.js");
 Mard = require("./mard_class.js");
 Mardaker = require("./mardaker_class.js");
 
- matrix = fillMatrix(n, m)
- grassArr = []; 
- xotakerArr = [];
- gishatichArr = [];
- mardArr = [];
- mardakerArr = []
- side = 20;
-
+matrix = fillMatrix(n, m)
+grassArr = [];
+xotakerArr = [];
+gishatichArr = [];
+mardArr = [];
+mardakerArr = []
+side = 20; 
+exanak = "amar";
 
 
 console.log(grassArr)
@@ -108,7 +108,21 @@ function draw() {
         mardakerArr[i].mult()
         mardakerArr[i].die()
     }
-    io.sockets.emit("matrix",matrix);
-    console.log(matrix)
+    io.sockets.emit("matrix", matrix);
 
 }
+io.on('connection', function (socket) {
+
+socket.on('garun', function () {
+    exanak = "garun";
+});
+socket.on('amar', function () {
+    exanak = "amar";
+});
+socket.on('ashun', function () {
+    exanak = "ashun";
+});
+socket.on('dzmer', function () {
+    exanak = "dzmer";
+});
+});
