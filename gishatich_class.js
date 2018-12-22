@@ -1,7 +1,7 @@
 var LivingCreature = require("./class.js")
-module.exports=class Gishatich extends LivingCreature {
+module.exports = class Gishatich extends LivingCreature {
     constructor(x, y, index) {
-        super(x,y,index)
+        super(x, y, index)
         this.energy = 10;
     }
     getNewDirections() {
@@ -21,19 +21,23 @@ module.exports=class Gishatich extends LivingCreature {
         return super.chooseCell(character)
     }
     mult() {
-        var arr =this.chooseCell(0)
-        var empty = arr[Math.floor(Math.random() * arr.length)]
-        this.energy--
-        if (empty && this.energy > 20) {
-            var newX = empty[0]
-            var newY = empty[1]
-            matrix[newY][newX] = 3
-            var gt = new Gishatich(newX, newY, 3)
-            gishatichArr.push(gt)
+        if (exanak != "dzmer" && exanak != "amar") {
+
+
+            var arr = this.chooseCell(0)
+            var empty = arr[Math.floor(Math.random() * arr.length)]
+            this.energy--
+            if (empty && this.energy > 20) {
+                var newX = empty[0]
+                var newY = empty[1]
+                matrix[newY][newX] = 3
+                var gt = new Gishatich(newX, newY, 3)
+                gishatichArr.push(gt)
+            }
         }
     }
     move() {
-        var arr =this.chooseCell(0)
+        var arr = this.chooseCell(0)
         var empty = arr[Math.floor(Math.random() * arr.length)]
         this.energy -= 2
         if (empty) {
@@ -47,7 +51,7 @@ module.exports=class Gishatich extends LivingCreature {
         }
     }
     eat() {
-        var arr =this.chooseCell(2)
+        var arr = this.chooseCell(2)
         var food = arr[Math.floor(Math.random() * arr.length)]
         if (food) {
             var newX = food[0]

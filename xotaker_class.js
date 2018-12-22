@@ -1,9 +1,10 @@
 
 var LivingCreature = require("./class.js")
-module.exports=class Xotaker extends LivingCreature {
-    constructor(x,y,index) {  
-        super(x,y,index);
-        this.energy=10;
+
+module.exports = class Xotaker extends LivingCreature {
+    constructor(x, y, index) {
+        super(x, y, index);
+        this.energy = 10;
     }
     getNewDirections() {
         this.directions = [
@@ -22,19 +23,22 @@ module.exports=class Xotaker extends LivingCreature {
         return super.chooseCell(character);
     }
     mult() {
-        var arr =this.chooseCell(0)
-        var empty = arr[Math.floor(Math.random() * arr.length)]
+        if (exanak != "dzmer" && exanak != "amar") {
+            var arr = this.chooseCell(0)
+            var empty = arr[Math.floor(Math.random() * arr.length)]
 
-        if (empty && this.energy > 10) {
-            var newX = empty[0]
-            var newY = empty[1]
-            matrix[newY][newX] = 2
-            var xt = new Xotaker(newX, newY, 2)
-            xotakerArr.push(xt)
+            if (empty && this.energy > 10) {
+                var newX = empty[0]
+                var newY = empty[1]
+                matrix[newY][newX] = 2
+                var xt = new Xotaker(newX, newY, 2)
+                xotakerArr.push(xt)
+                nor_xotaker++
+            }
         }
     }
     move() {
-        var arr =this.chooseCell(0)
+        var arr = this.chooseCell(0)
         var empty = arr[Math.floor(Math.random() * arr.length)]
         if (empty) {
             var newX = empty[0]
@@ -48,8 +52,8 @@ module.exports=class Xotaker extends LivingCreature {
         this.energy--
     }
     eat() {
-        var arr =this.chooseCell(1)
-        var food  = arr[Math.floor(Math.random() * arr.length)]
+        var arr = this.chooseCell(1)
+        var food = arr[Math.floor(Math.random() * arr.length)]
         if (food) {
             var newX = food[0]
             var newY = food[1]
@@ -62,11 +66,13 @@ module.exports=class Xotaker extends LivingCreature {
             }
             this.x = newX
             this.y = newY
-            
+
             this.energy += 3
+            xotakeri_keracy++
         }
     }
     die() {
+
         if (this.energy <= 0) {
             matrix[this.y][this.x] = 0
             for (var i in xotakerArr) {
@@ -76,6 +82,6 @@ module.exports=class Xotaker extends LivingCreature {
             }
         }
     }
-
-
+    
 }
+

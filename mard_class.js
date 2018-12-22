@@ -33,9 +33,11 @@ module.exports=class Mard extends LivingCreature {
         }
     }
     move() {
+        this.energy -= 2
+        
         var arr =this.chooseCell(0)
         var empty = arr[Math.floor(Math.random() * arr.length)]
-        this.energy -= 2
+        
         if (empty) {
             var newX = empty[0]
             var newY = empty[1]
@@ -46,10 +48,15 @@ module.exports=class Mard extends LivingCreature {
         }
     }
     move1() {
-
+        if (exanak == "dzmer") {
+            this.energy -= 3
+        }
+        else{
+            this.energy -= 2
+        }
         var arr =this.chooseCell(1)
         var empty1= arr[Math.floor(Math.random() * arr.length)]
-        this.energy -= 2
+        
 
         if (empty1) {
 
@@ -85,6 +92,7 @@ module.exports=class Mard extends LivingCreature {
             this.x = newX
             this.y = newY
             this.energy += 5
+            kerac_gishatic++
         }
     }
     eat1() {
@@ -104,6 +112,7 @@ module.exports=class Mard extends LivingCreature {
             this.x = newX
             this.y = newY
             this.energy += 5
+            kerac_xotaker++
         }
     }
     die() {

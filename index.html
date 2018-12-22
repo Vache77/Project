@@ -1,24 +1,41 @@
 <html>
-   <head>
-       <meta charset="utf8">
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
-       <script src="/socket.io/socket.io.js"></script>
-      <script src="script.js"></script>
 
-      <style>
-        #legend {position: absolute;top: 0;right: 0;width: 800px;} .legend-color {width: 30px;height: 30px;} td {border: 1px solid black; font-size: 14px; padding-left: 5px;}
+<head>
+    <meta charset="utf8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <style>
+        #legend {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 800px;
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 30px;
+        }
+
+        td {
+            border: 1px solid black;
+            font-size: 14px;
+            padding-left: 5px;
+        }
     </style>
 </head>
 
 <body>
-        <div id="chat">
-                <button id="garun">Garun</button>
-                <button id="amar">Amar</button>
-                <button id="ashun">Ashun</button>
-                <button id="dzmer">Dzmer</button>
-                
-            </div>
-         
+    <div>
+        <button id="garun">Garun</button>
+        <button id="amar">Amar</button>
+        <button id="ashun">Ashun</button>
+        <button id="dzmer">Dzmer</button>
+        <button id ="varaq">Varaq</button>
+
+    </div>
+
     <table id="legend">
         <tr>
             <td class="legend-color">Գույն</td>
@@ -65,10 +82,11 @@
             <td class="legend-color" style="background-color:blue"></td>
             <td>ՄԱՐԴ</td>
             <td>Մոտակա 8 վանդակներում նաև խոտերի վրա, էներգիան քչանում է 2֊ով</td>
-            <td>Խոտակերներին և գիշատիչներին, մոտակա 8 վանդակներում,Խոտակերներին և գիշատիչներին ուտելիս էներգիան ավելանում է 5֊ով</td>
+            <td>Խոտակերներին և գիշատիչներին, մոտակա 8 վանդակներում,Խոտակերներին և գիշատիչներին ուտելիս էներգիան ավելանում
+                է 5֊ով</td>
             <td>Բազմանում է մոտակա տարածքներում, երբ էներգիան 30֊ից ավել է</td>
             <td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
-        
+
         </tr>
         <tr>
             <td class="legend-color" style="background-color:black"></td>
@@ -79,7 +97,8 @@
             <td>Սատկում է, երբ էներգիան փոքր է 0֊ից</td>
         </tr>
     </table>
-   </head>
-   <body>
-   </body>
+
+    <script src="script.js"></script>
+</body>
+
 </html>

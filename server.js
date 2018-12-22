@@ -7,8 +7,8 @@ app.get('/', function (req, res) {
     res.redirect('index.html');
 });
 server.listen(3000);
-var n = 20
-var m = 20
+var n = 35
+var m = 35
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
@@ -28,21 +28,22 @@ Xotaker = require("./xotaker_class.js");
 Gishatich = require("./gishatich_class.js");
 Mard = require("./mard_class.js");
 Mardaker = require("./mardaker_class.js");
-
+var fs = require('fs');
 matrix = fillMatrix(n, m)
 grassArr = [];
 xotakerArr = [];
 gishatichArr = [];
 mardArr = [];
 mardakerArr = []
-side = 20; 
+side = 30;
 exanak = "amar";
+varaq = "false"
 
-
-console.log(grassArr)
-console.log(xotakerArr)
-console.log(Xotaker);
-
+nor_xot = 0
+nor_xotaker =0
+xotakeri_keracy = 0
+kerac_gishatic =0
+kerac_xotaker=0
 for (var y = 0; y < matrix.length; y++) {
     for (var x = 0; x < matrix[y].length; x++) {
 
@@ -76,7 +77,7 @@ for (var y = 0; y < matrix.length; y++) {
 }
 
 
-setInterval(draw, 200)
+setInterval(draw, 800)
 function draw() {
     for (var i in grassArr) {
         grassArr[i].mult()
@@ -108,21 +109,41 @@ function draw() {
         mardakerArr[i].mult()
         mardakerArr[i].die()
     }
-    io.sockets.emit("matrix", matrix);
+    io.sockets.emit("matrix", [matrix, exanak]);
 
 }
 io.on('connection', function (socket) {
 
-socket.on('garun', function () {
-    exanak = "garun";
+    socket.on('garun', function () {
+        exanak = "garun";
+    });
+    socket.on('amar', function () {
+        exanak = "amar";
+    });
+    socket.on('ashun', function () {
+        exanak = "ashun";
+    });
+    socket.on('dzmer', function () {
+        exanak = "dzmer";
+    });
+    socket.on('varaq', function () {
+
+        for (var i in xotakerArr) {
+            if (xotakerArr[i].energy < 4) {
+                xotakerArr.splice(i, 1);
+                var x = xotakerArr[i].x;
+                var y = xotakerArr[i].y;
+                matrix[y][x] = 0     
+            }
+        }
+    });
 });
-socket.on('amar', function () {
-    exanak = "amar";
-});
-socket.on('ashun', function () {
-    exanak = "ashun";
-});
-socket.on('dzmer', function () {
-    exanak = "dzmer";
-});
-});
+var obj = { "info": [] };
+function main() {
+    var file = "Statistics.json"
+    obj.info.push({ "nor arajacac xoteri qanaky": nor_xot ,"nor arajacac xotakerneri qanaky": nor_xotaker,
+    "xotakerneri keraci qanaky": xotakeri_keracy,"mardu kerac xotakernery qanaky":kerac_xotaker,"mardu kerac gishatichnery qanaky":kerac_gishatic,
+})
+    fs.writeFileSync(file, JSON.stringify(obj, null, 3))
+}
+setInterval(main, 3500)
